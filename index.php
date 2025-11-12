@@ -1,16 +1,3 @@
-<?php
-
-
-// instruksi kerja nomor 3
-//array 1d
-$kendaraan = array("Truk", "Motor", "Mobil");
-
-//	Instruksi Kerja Nomor 4
-//	Mengurutkan array sesuai abjad A-Z.
-sort($kendaraan);
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -50,13 +37,21 @@ sort($kendaraan);
 						<div class="col-lg-4" style="margin-left: 25px;">
 							<!-- Instruksi Kerja Nomor 3, 4, dan 5 -->
 							<?php
+							//array 1d (nomor 3)
+							$kendaraan = array("Truk", "Motor", "Mobil");
+
+							//	Instruksi Kerja Nomor 4
+							//	Mengurutkan array sesuai abjad A-Z.
+							sort($kendaraan);
+
+							// nomor 5
 							foreach ($kendaraan as $k) {
-								echo "
-							<div class='form-check'>
-								<input class='form-check-input' type='radio' name='kendaraan' value='$k'>
-								<label class='form-check-label' for='$k'> $k</label>
-							</div>
-						";
+							echo "
+								<div class='form-check'>
+									<input class='form-check-input' type='radio' name='kendaraan' value='$k'>
+									<label class='form-check-label' for='$k'> $k</label>
+								</div>
+							";
 							}
 							?>
 						</div>
@@ -69,12 +64,13 @@ sort($kendaraan);
 							<select id="masuk" name="masuk">
 								<option value="">- Jam Masuk -</option>
 
-								<!-- Instruksi Kerja Nomor 6 -->
+								<!-- Instruksi Kerja Nomor 6 (jam Masuk)-->
 								<?php
 								for ($masuk = 1; $masuk <= 24; $masuk++) {
 									echo "<option value='$masuk'>$masuk</option>";
 								}
 								?>
+
 							</select>
 						</div>
 					</div>
@@ -114,8 +110,8 @@ sort($kendaraan);
 						</div>
 						<div class="col-lg-2"></div>
 					</div>
-				</form>
 
+				</form>
 			</div>
 		</div>
 
@@ -123,6 +119,7 @@ sort($kendaraan);
 
 	<?php
 
+	// ketika button hitung klik
 	if (isset($_POST['hitung'])) {
 		$plat   = $_POST['plat'];
 		$kendaraan  = $_POST['kendaraan'];
@@ -142,21 +139,24 @@ sort($kendaraan);
 			// Instruksi Kerja Nomor 9 (kontrol percabangan)
 			if ($kendaraan == "Mobil") {
 				if ($durasi <= 1) {
-					return 5000;
+					$biaya= 5000;
 				} else {
-					return 5000 + (($durasi - 1) * 3000);
+					$biaya =  5000 + (($durasi - 1) * 3000);
 					//durasi di atas 1 jam
 				}
 			} elseif ($kendaraan == "Motor") {
 				if ($durasi <= 1) {
-					return 2000;
+					$biaya=  2000;
 				} else {
-					return 2000 + (($durasi - 1) * 1000);
+					$biaya=  2000 + (($durasi - 1) * 1000);
 				}
 			} elseif ($kendaraan == "Truk") {
-				return $durasi * 6000;
+				$biaya=  $durasi * 6000;
 			}
-			return 0;
+			else{
+				$biaya =0;
+			}
+			return $biaya; // mengembalikan nilai 
 		}
 
 		// Instruksi Kerja Nomor 10 ($biaya_parkir)
